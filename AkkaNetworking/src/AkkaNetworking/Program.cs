@@ -35,7 +35,8 @@ namespace AkkaNetworking
 
                 // 2
                 //var iocClient = system.ActorOf(Props.Create(() => new IOCClient("192.168.60.2", 50000)), "ioc-client");
-                var iocClient = system.ActorOf(Props.Create(() => new IOCClient("127.0.0.1", 9001)), "ioc-client");
+                //var iocClient = system.ActorOf(Props.Create(() => new IOCClient("127.0.0.1", 8888)), "ioc-client");
+                var iocClient = system.ActorOf(Props.Create(() => new IOCClient("192.168.60.1", 50000)), "ioc-client");
                 while (true)
                 {
                     var input = Console.ReadLine();
@@ -57,7 +58,7 @@ namespace AkkaNetworking
                 Console.WriteLine("closing client");
                 iocClient.Tell(new IOCClient.CloseClient());
                 await Task.Delay(500);
-                //system.Terminate().Wait();
+                system.Terminate().Wait();
             }
         }
     }
